@@ -1,0 +1,53 @@
+<form [formGroup]="exform">
+    <h1>Fifth Third Package Tracker</h1>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="ATMID">ENTER ATM ID</label>
+            <input formControlName="atmid" type="text" id="atmid" class="form-control">
+            <div class="alert alert-danger"   *ngIf="exform.get('atmid').invalid && exform.get('atmid').touched">Please enter ATM ID</div>         
+            
+        </div>
+        <div class="form-group">
+            <label for="ATMVendor">Select Vendor</label>
+            <select formControlName="vendor" name="vendor" id="vendorName" class="form-control">
+                <option *ngFor="let vendor of vendorNames" [value]="vendor.id">{{vendor.label}}</option>
+            </select>
+            <div class="alert alert-danger"   *ngIf="exform.get('vendor').invalid && exform.get('vendor').touched">Please select Vendor</div>
+        </div>
+        <div class="form-group">
+            <label for="ATMOs">Select OS Version</label>
+            <select formControlName="osversion" name="os" id="OsVersion" class="form-control">
+                <option *ngFor="let version of versions" [value]="version.id">{{version.label}}</option>
+            </select>
+            <div class="alert alert-danger"    *ngIf="exform.get('osversion').invalid && exform.get('osversion').touched">Please select OS Version</div>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Browse Versions Versions</label>
+            <input class="form-control" formControlName="versionsfile" type="file" id="formFile" (change)="selectFile($event)">
+         
+            <div class="alert alert-danger"    *ngIf="exform.get('versionsfile').invalid && exform.get('versionsfile').touched">Please browse and select a file</div>
+              
+        </div>
+        
+        <button class="btn btn-primary" (click)="clickSub()" >Submit</button>
+    </div> <table class="table">
+        <thead>
+          <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+      </tr>
+      </thead>
+      <tbody>
+    
+      <tr *ngFor="let i of list;let j=index" [ngClass]="i.class_name">
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.mobile}}</td>
+      </tr>
+      </tbody>
+    </table>
+   <!-- <input type="file" (change)="selectFile($event)" />-->
+</form>
+
+
