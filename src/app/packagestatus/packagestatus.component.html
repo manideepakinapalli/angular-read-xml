@@ -4,8 +4,7 @@
         <div class="form-group">
             <label for="ATMID">ENTER ATM ID</label>
             <input formControlName="atmid" type="text" id="atmid" class="form-control">
-            <div class="alert alert-danger"   *ngIf="exform.get('atmid').invalid && exform.get('atmid').touched">Please enter ATM ID</div>         
-            
+            <div class="alert alert-danger"   *ngIf="exform.get('atmid').invalid && exform.get('atmid').touched">Please enter ATM ID</div>             
         </div>
         <div class="form-group">
             <label for="ATMVendor">Select Vendor</label>
@@ -26,28 +25,21 @@
             <input class="form-control" formControlName="versionsfile" type="file" id="formFile" (change)="selectFile($event)">
          
             <div class="alert alert-danger"    *ngIf="exform.get('versionsfile').invalid && exform.get('versionsfile').touched">Please browse and select a file</div>
-              
         </div>
-        
         <button class="btn btn-primary" (click)="clickSub()" >Submit</button>
     </div> <table class="table">
         <thead>
           <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Mobile</th>
-      </tr>
+            <th>UID</th>
+        </tr>
       </thead>
       <tbody>
     
-      <tr *ngFor="let i of list;let j=index" [ngClass]="i.class_name">
-        <td>{{i.name}}</td>
-        <td>{{i.email}}</td>
-        <td>{{i.mobile}}</td>
+      <tr *ngFor="let i of list">
+        <td>{{i}}</td>
       </tr>
       </tbody>
     </table>
-   <!-- <input type="file" (change)="selectFile($event)" />-->
 </form>
 
 

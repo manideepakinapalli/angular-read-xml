@@ -8,7 +8,8 @@ import * as converter from 'xml-js';
   styleUrls: ['./packagestatus.component.css']
 })
 export class PackagestatusComponent implements OnInit {
-  list: any = []
+  list: any = [];
+  unique:any = new Set<string>();
   vendorNames=[
     {id:1,label:"HYOSUNG"},
     {id:2,label:"NCR"},
@@ -37,7 +38,6 @@ export class PackagestatusComponent implements OnInit {
     return (filename != '' && filename != undefined && filename != null) ? filename.split('.').pop() : '';
   }
   clickSub(): void{
-    
   }
   selectFile(event:any) {
     this.file = event.target.files[0];
@@ -49,28 +49,19 @@ export class PackagestatusComponent implements OnInit {
     reader.onload = (e: any) => {
       let xml = e.target.result;
       let result1 = converter.xml2json(xml, { compact: true, spaces: 2 });
-      // console.log(xml)
-      // console.log(result1)
       let JSONData:any = JSON.parse(result1);
-      //console.log(JSONData);
-      this.list = [];
-      
-      if(Array.isArray(JSONData.employees.employee))
-      {
-        for(let i of JSONData.employees.employee)
-        {
-          //console.log(i);
-          let tempdata:any={
-          email:i.email._text,
-          mobile:i.mobile._text,
-          name:i.name._text,
-        }
-      this.list.push(tempdata);
-        }
+      let uidJSON = JSONData.VERSIONS.PRODUCT;
+      for(let i = 0; i < uidJSON.length;i++){
+        let data = uidJSON[i].VER;
+        for(let j = 0; j < data.length; j++) {
+          if(data[j].UID._text != "N/A"){     
+            this.unique.add(data[j].UID._text);          
+          }
+        };
       }
-    
+      this.list = Array.from(this.unique.values());
+      console.log(this.list);
     }
-
     reader.readAsText(event.target.files[0])
   }
 }
