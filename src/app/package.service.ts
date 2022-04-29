@@ -5,8 +5,13 @@ import { Injectable } from '@angular/core';
 })
 export class PackageService {
   data:any;
+  atmID:any;
+  osversion:any;
+  vendor:any;
   constructor() { }
   public SaveEmployee(empdata:any) {  
-   console.log("manideep",empdata); 
+   this.atmID=empdata.atmid;
+   this.osversion=empdata.osversion;
+   this.vendor=empdata.vendor;
  } 
 }
