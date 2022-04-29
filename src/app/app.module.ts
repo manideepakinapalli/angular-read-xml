@@ -6,11 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PackagestatusComponent } from './packagestatus/packagestatus.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from './header/header.component';
+import { DeletePackageComponent } from './delete-package/delete-package.component';
+import { AddPackageComponent } from './add-package/add-package.component';
+import { HomeComponent } from './home/home.component';
+import { SchedulepackagesComponent } from './schedulepackages/schedulepackages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PackagestatusComponent
+    PackagestatusComponent,
+    HeaderComponent,
+    DeletePackageComponent,
+    AddPackageComponent,
+    HomeComponent,
+    SchedulepackagesComponent
   ],
   imports: [
     BrowserModule,

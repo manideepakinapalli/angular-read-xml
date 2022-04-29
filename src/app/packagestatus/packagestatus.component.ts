@@ -2,30 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import * as converter from 'xml-js';
+import {PackageService} from '../package.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-packagestatus',
   templateUrl: './packagestatus.component.html',
   styleUrls: ['./packagestatus.component.css']
 })
 export class PackagestatusComponent implements OnInit {
+  constructor(private packageservice: PackageService,private router: Router){}
   list: any = [];
   unique:any = new Set<string>();
   vendorNames=[
-    {id:1,label:"HYOSUNG"},
-    {id:2,label:"NCR"},
-    {id:3,label:"DIEBOLD"},
-    {id:4,label:"DN"}
+    {id:"HYOSUNG",label:"HYOSUNG"},
+    {id:"NCR",label:"NCR"},
+    {id:"DIEBOLD",label:"DIEBOLD"},
+    {id:"DN",label:"DN"}
   ]
   versions=[
-    {id:1,label:"Windows 10"},
-    {id:2,label:"Windows 7"}
+    {id:"W10",label:"Windows 10"},
+    {id:"W7",label:"Windows 7"}
   ];
   exform: any;
   file:any;
   localUrl: any[] | undefined;
   ngOnInit(): void {
     this.exform=new FormGroup({
-      'atmid':new FormControl(null,[Validators.required,Validators.pattern('^[a-zA-Z]{4}[0-9]{4}')]),
+      'atmid':new FormControl(null,[Validators.required,Validators.pattern('^[a-zA-Z]{4}_[0-9]{4}')]),
       'vendor':new FormControl(null,Validators.required),
       'osversion':new FormControl(null,Validators.required),
       'versionsfile':new FormControl(null,Validators.required)
@@ -60,8 +63,13 @@ export class PackagestatusComponent implements OnInit {
         };
       }
       this.list = Array.from(this.unique.values());
-      console.log(this.list);
+      
     }
     reader.readAsText(event.target.files[0])
   }
+  SaveEmployee(value:any) {  
+    this.packageservice.SaveEmployee(value);
+    this.packageservice.data=this.list;  
+    this.router.navigate(['schedulePackage']);
+}  
 }
