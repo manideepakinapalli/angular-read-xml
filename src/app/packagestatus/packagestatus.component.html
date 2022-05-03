@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<form [formGroup]="exform" (ngSubmit)="SaveFormData(exform.value)">
+<form [formGroup]="exform">
    
     <div class="centered">
         <div class="atmid">
@@ -29,9 +29,10 @@
             
            
             <div class="alert"  *ngIf="exform.get('versionsfile').invalid && exform.get('versionsfile').touched">Please browse and select a file</div>
+            <div class="alert"  *ngIf="errorMsg">{{errorMsgString}}</div>
         </div>
        
-        <button class="btn">Submit</button>
+        <button class="btn" [disabled]="exform.invalid" (click)="SaveFormData()">Submit</button>
     </div>
    
 </form>

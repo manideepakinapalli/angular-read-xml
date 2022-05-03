@@ -4,7 +4,10 @@
     border-collapse: collapse;
     width: 100%;
   }
-  
+  td{
+      display: flex;
+      justify-content: center;
+  }
   .customers td, #customers th {
     padding: 8px;
   }
@@ -19,6 +22,8 @@
     text-align: left;
     background-color: #140085;
     color: white;
+    display: flex;
+    justify-content: center;
   }
   .labelforid{
       padding-bottom: 20px;

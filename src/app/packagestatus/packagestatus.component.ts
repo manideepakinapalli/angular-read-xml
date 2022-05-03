@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class PackagestatusComponent implements OnInit {
   constructor(private packageservice: PackageService,private router: Router){}
   list: any = [];
+  errorMsgString="Sorry Wrong Xml";
   unique:any = new Set<string>();
   vendorNames=[
     {id:"HYOSUNG",label:"HYOSUNG"},
@@ -25,6 +26,7 @@ export class PackagestatusComponent implements OnInit {
   ];
   exform: any;
   file:any;
+  errorMsg:any;
   ngOnInit(): void {
     this.exform=new FormGroup({
       'atmid':new FormControl(null,[Validators.required,Validators.pattern('^[a-zA-Z]{4}_[0-9]{4}')]),
@@ -44,7 +46,7 @@ export class PackagestatusComponent implements OnInit {
   selectFile(event:any) {
     this.file = event.target.files[0];
      if (this.getFileExtension(this.file.name) != 'xml') {
-      alert("Wrong XML");
+      this.errorMsg= true;
       return;
     }
     const reader = new FileReader();
@@ -56,18 +58,18 @@ export class PackagestatusComponent implements OnInit {
       for(let i = 0; i < uidJSON.length;i++){
         let data = uidJSON[i].VER;
         for(let j = 0; j < data.length; j++) {
-          if(data[j].UID._text != "N/A"){     
-            this.unique.add(data[j].UID._text);          
+          if(data[j].UID._text != "N/A" && data[j].UID._text != "FULL_FUNCTION_MULTI_DENOMINATION"){ 
+            data[j].UID._text = data[j].UID._text.split('_')[0];
+            this.unique.add(data[j].UID._text);  
           }
         };
       }
       this.list = Array.from(this.unique.values());
-      
     }
     reader.readAsText(event.target.files[0])
   }
-  SaveFormData(value:any) {  
-    this.packageservice.saveData(value);
+  SaveFormData() {  
+    this.packageservice.saveData(this.exform.value);
     this.packageservice.data=this.list;  
     this.router.navigate(['schedulePackage']);
 }  

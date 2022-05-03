@@ -22,13 +22,13 @@
         <label >Results of #ATMID: {{atmid}}</label>
     <label style="float:right">OS Version:{{osversion}}</label></div>
         <tr>
-          <th>Packages in version.xml</th>
-          <th>Packages Missing</th>
+          <th style="align-items: center;">Packages in version.xml</th>
+        
         </tr>
         <tr *ngFor="let i of list">
           <td>{{i}}</td> 
         </tr>
-        <tr><td></td><td><button class="btn" *ngIf="atmid">SCHEDULE</button></td></tr>
+        <!-- <tr><td></td><td><button class="btn" *ngIf="atmid">SCHEDULE</button></td></tr> -->
       </table>
       
     
