@@ -1,1 +1,28 @@
 <app-header></app-header>
+
+<form [formGroup]="addPackage" (ngSubmit)="newPackageForm(addPackage.value)">
+   
+    <div class="centered">
+        <div class="vendor">
+            <label for="ATMVendor">Select Vendor</label>
+            <select formControlName="vendor" name="vendor" id="vendorName" class="form-control">
+                <option *ngFor="let vendor of vendorNames" [value]="vendor.id">{{vendor.label}}</option>
+            </select>
+            <div class="alert"  *ngIf="addPackage.get('vendor').invalid && addPackage.get('vendor').touched">Please select Vendor</div>
+        </div>
+        <div class="os">
+            <label for="ATMOs">Select OS Version</label>
+            <select formControlName="osversion" name="os" id="OsVersion" class="form-control">
+                <option *ngFor="let version of versions" [value]="version.id">{{version.label}}</option>
+            </select>
+            <div class="alert"  *ngIf="addPackage.get('osversion').invalid && addPackage.get('osversion').touched">Please select OS Version</div>
+        </div>
+        <div class="newpackage">
+            <label for="newpackage">Enter New Package</label>
+            <input formControlName="packagenew" type="text" id="newpackage" class="form-control">
+            <div class="alert"   *ngIf="addPackage.get('packagenew').invalid && addPackage.get('packagenew').touched">Please enter ATM ID</div>             
+        </div>   
+        <button class="btn">Submit</button>
+    </div>
+   
+</form>

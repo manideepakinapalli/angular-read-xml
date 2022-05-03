@@ -9,7 +9,7 @@ export class PackageService {
   osversion:any;
   vendor:any;
   constructor() { }
-  public SaveEmployee(empdata:any) {  
+  public saveData(empdata:any) {  
    this.atmID=empdata.atmid;
    this.osversion=empdata.osversion;
    this.vendor=empdata.vendor;

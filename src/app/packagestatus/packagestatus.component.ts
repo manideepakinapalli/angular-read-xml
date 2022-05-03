@@ -25,7 +25,6 @@ export class PackagestatusComponent implements OnInit {
   ];
   exform: any;
   file:any;
-  localUrl: any[] | undefined;
   ngOnInit(): void {
     this.exform=new FormGroup({
       'atmid':new FormControl(null,[Validators.required,Validators.pattern('^[a-zA-Z]{4}_[0-9]{4}')]),
@@ -67,8 +66,8 @@ export class PackagestatusComponent implements OnInit {
     }
     reader.readAsText(event.target.files[0])
   }
-  SaveEmployee(value:any) {  
-    this.packageservice.SaveEmployee(value);
+  SaveFormData(value:any) {  
+    this.packageservice.saveData(value);
     this.packageservice.data=this.list;  
     this.router.navigate(['schedulePackage']);
 }  
