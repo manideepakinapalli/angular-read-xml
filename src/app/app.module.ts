@@ -11,6 +11,7 @@ import { DeletePackageComponent } from './delete-package/delete-package.componen
 import { AddPackageComponent } from './add-package/add-package.component';
 import { HomeComponent } from './home/home.component';
 import { SchedulepackagesComponent } from './schedulepackages/schedulepackages.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SchedulepackagesComponent } from './schedulepackages/schedulepackages.c
     DeletePackageComponent,
     AddPackageComponent,
     HomeComponent,
-    SchedulepackagesComponent
+    SchedulepackagesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

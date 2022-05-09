@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <form [formGroup]="exform">
-   
+   <div class="main">
     <div class="centered">
         <div class="atmid">
             <label for="ATMID">ENTER ATM ID</label>
@@ -34,7 +34,7 @@
        
         <button class="btn" [disabled]="exform.invalid" (click)="SaveFormData()">Submit</button>
     </div>
-   
+</div>
 </form>
 
 

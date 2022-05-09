@@ -24,8 +24,7 @@ input[type=text], select {
 
 .centered {
     font-family: Arial, Helvetica, sans-serif;
-    width: 450px;
-    height: 400px;
+    margin-top: 60px;;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -34,12 +33,17 @@ input[type=text], select {
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    
+    background-color: #FFFFFF;
+    width: 700px;
+    height: 500px;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
     font-size: 15px;
-    padding: 5px;
+    padding: 30px;
+    padding-bottom: 10px;
     z-index: 100;
   }
-  
+
 .btn{
     width: 100%;
     background-color:rgb(0, 17, 131);
